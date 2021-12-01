@@ -32,7 +32,7 @@ class services(http.Controller):
     def shared_documents(self, **kw):
         partner = request.env.user.partner_id
         values = {}
-        attachment_ids  = request.env['ir.attachment'].search([('res_model','=','res.partner'),('res_id','=',partner.id)])
+        attachment_ids  = request.env['ir.attachment'].sudo().search([('res_model','=','res.partner'),('res_id','=',partner.id)])
         values.update({'attachment_ids': attachment_ids,
                        'page_name': 'shared_documents'})
         qcontext = http.request.httprequest.full_path
