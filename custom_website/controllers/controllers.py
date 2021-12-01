@@ -94,7 +94,7 @@ class services(http.Controller):
             url = request.session['shared_doc_url']
 
             if partner_id:
-                attachment_id = request.env['ir.attachment'].search([('id','=',attachment.id),('res_model','=','res.partner'),('res_id','=',partner_id.id)])
+                attachment_id = request.env['ir.attachment'].sudo().search([('id','=',attachment.id),('res_model','=','res.partner'),('res_id','=',partner_id.id)])
                 if attachment_id:
                     attachment_id.sudo().unlink()
         return request.redirect(url)
