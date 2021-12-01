@@ -1,0 +1,87 @@
+<odoo>
+
+    <template id="portal_my_documents" name="Show Documents" customize_show="True" inherit_id="portal.portal_my_home" priority="20">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Documents</t>
+                <t t-set="url" t-value="'/my/documents'"/>
+            </t>
+        </xpath>
+    </template>
+
+
+
+    <template id="shared_documents_template" name="My Documents">
+
+
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+
+                <t t-set="title">My Shared Documents</t>
+            </t>
+            <form action="/upload_my_documents" method="post" enctype="multipart/form-data">
+
+            <t t-if="not attachment_ids and not link_ids">
+                <div class="alert alert-warning" role="alert">There are currently no Attachments or Links shared with
+                    you.
+                </div>
+            </t>
+
+            <table class="bordreless  table table-hover ">
+              <t t-if="attachment_ids">
+                <div class="card   mt-3">
+                    <div class="card-header  font-weight-bold">
+                        Attachments
+                    </div>
+
+                        <t t-foreach="attachment_ids" t-as="attachment">
+                            <tr>
+                                <td>
+                                    <a class="btn btn-outline-info "
+                                       t-att-href="'/attachment/download?attachment_id=%i' % attachment.id"
+                                       target="_blank" style="padding: 0.3rem 3rem;">
+                                        <i class="fa fa-upload"></i>
+                                    </a>
+                                </td>
+                                <td>
+
+                                    <span class="ml-3">
+                                        <t t-esc="attachment.name"/>
+                                    </span>
+                                </td>
+
+                                <td/>
+
+                                <td>
+
+                                    <a class="btn btn-light float-left"
+                                       t-attf-href="/remove/{{ slug(attachment) }}" style="padding: 0.3rem 3rem;">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                </td>
+
+                            </tr>
+
+
+                        </t>
+
+                </div>
+            </t>
+      <tr>
+          <td>
+              <input type="file" class="file col-md-12" name="attach"/>
+          </td>
+        <td>
+            <button class="btn btn-primary " type="submit">Submit</button>
+        </td>
+      </tr>
+  </table>
+
+
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+            </form>
+        </t>
+    </template>
+</odoo>

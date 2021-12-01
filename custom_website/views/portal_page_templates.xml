@@ -1,0 +1,12 @@
+<odoo>
+	<template id="portal_layout_inherit" inherit_id="portal.portal_layout" name="Home">
+            <xpath expr="//div[hasclass('o_portal_my_security')]" position="after">
+                <div class="o_portal_my_security mt-3">
+                    <h4>Request for services </h4>
+                      <hr class="mt-1 mb-1"/>
+                                <a href="/services"><i class="fa fa-pencil mx-1"/>Request</a>
+                </div>
+            </xpath>
+    </template>
+</odoo>
+                                

@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+<odoo>
+
+<record id="menu_courses" model="website.menu">
+            <field name="name">Courses</field>
+            <field name="url">/courses</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">2</field>
+        </record>
+
+
+
+
+    <record id="website.homepage" model="ir.ui.view">
+            <field name="name">Home</field>
+            <field name="type">qweb</field>
+            <field name="key">website.homepage</field>
+            <field name="arch" type="xml">
+                <t name="Home" priority="29" t-name="website.homepage">
+                    <t t-call="website.layout">
+                        <t t-set="pageName" t-value="'homepage'"/>
+                        <div id="wrap" >
+                            jjjjjjjjjjjjjjjjjjjjjjjjjj
+                        </div>
+                    </t>
+                </t>
+            </field>
+        </record>
+
+
+
+</odoo>
+    </data>
+</odoo>

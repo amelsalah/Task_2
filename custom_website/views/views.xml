@@ -1,0 +1,116 @@
+<odoo>
+    <data>
+
+
+
+        <!-- MODELS TREE OR LIST VIEWS -->
+
+        <record model="ir.ui.view" id="services_list">
+            <field name="name">Services list</field>
+            <field name="model">services</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- The action which called by the smart button in services form -->
+
+
+        <record model="ir.actions.act_window" id="action_open_services_request">
+            <field name="name">Requests</field>
+            <field name="res_model">clients.requests</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('service_id','=',active_id)]</field>  
+            <field name="context">{'create':False}</field>         
+        </record>
+
+        <!-- MODELS FORM VIEWS -->
+     
+        <record model="ir.ui.view" id="services_form">
+            <field name="name">Services form</field>
+            <field name="model">services</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="%(action_open_services_request)d" class="oe_stat_button" string="Requests"
+                                    icon="fa-user" type="action" />
+                        </div>
+
+                        <field name="logo" widget="image" class="oe_avatar"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Name"/>
+
+                            </h1>
+                        </div>
+                        
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="clients_requests_form">
+            <field name="name">Clients Request</field>
+            <field name="model">clients.requests</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="partner_id"/>
+                                <field name="phone"/>
+                                <field name="email"/>
+                            </group>
+                            <group>
+                                <field name="service_id"/>
+                                <field name="description"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- actions which called by menus -->
+ 
+
+        <record model="ir.actions.act_window" id="services_action">
+            <field name="name">Services</field>
+            <field name="res_model">services</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="requests_action">
+            <field name="name">Clients Requests</field>
+            <field name="res_model">clients.requests</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="clients_action">
+            <field name="name">Clients</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Module menus -->
+
+        <menuitem name="Clients" id="clients_menu_root" />
+
+        <menuitem name="Services" id="services" parent="clients_menu_root"
+                  sequence="2" action="services_action" />
+
+        <menuitem name="Requests" id="requests" parent="clients_menu_root"
+                  sequence="2" action="requests_action" />
+
+        <menuitem name="Clients" id="Clients" parent="clients_menu_root"
+                  sequence="2" action="clients_action" />
+
+      
+
+
+    </data>
+</odoo>

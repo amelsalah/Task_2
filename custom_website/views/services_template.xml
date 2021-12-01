@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="services_template" name="Services">
+       
+      <t t-call="portal.portal_layout">
+    <t t-set="pageName" t-value="'homepage'"/>
+    <div id="wrap" class="oe_structure oe_empty">
+      <t t-if="services">
+        <section class="s_media_list bg-200 pt32 pb32 o_colored_level" data-vcss="001"
+                             data-snippet="s_media_list" data-name="Media List" style="">
+                  <div class="row container">
+                          <t t-foreach="services" t-as="service">
+                                <div class="card col-md-3 mt-3 mr-2 s_nb_column_fixed s_col_no_bgcolor">
+          <t t-if="service.logo">
+                <img  t-att-src="image_data_uri(service.logo)" class="img img-fluid mx-auto" alt="" loading="lazy" data-original-id="397" data-original-src="/website/static/src/img/snippets_demo/s_text_image.jpg" data-mimetype="image/jpeg"/>
+                </t>
+                <t t-else="">
+               <img  src="/custom_website/static/src/img/default-logo.png" class="img img-fluid mx-auto" alt="" loading="lazy" data-original-id="397"  data-mimetype="image/png"/>
+
+                </t>  <div class="card-body">
+    <h5 class="card-title"><t t-esc="service.name"/></h5>
+  
+  </div>
+ 
+  <div class="card-body text-center">
+ <a t-attf-href="/services/#{service.id}" class="mb-2 btn btn-outline-primary btn-lg" data-original-title="" title="" aria-describedby="tooltip884654" target="_blank">Request Now</a>
+</div>
+</div>
+</t>
+</div>
+</section>
+</t>
+<t t-else="">
+
+  <div class="container s_allow_columns mt-5">
+          <h2 style="text-align: center;" >
+            <font style="font-size: 42px;">Sorry ! No Available Services to request </font>
+          </h2>
+         
+        </div>
+  </t>
+</div>
+</t>
+</template>
+</odoo>
