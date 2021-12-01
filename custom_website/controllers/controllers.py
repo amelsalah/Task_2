@@ -87,7 +87,7 @@ class services(http.Controller):
         else:
             return request.not_found()
 
-    @http.route('''/remove/<model("ir.attachment"):attachment>''', type='http', auth="public", website=True)
+    @http.route('''/remove/<model("ir.attachment"):attachment>''', type='http', auth="user", website=True)
     def remove_shared(self, attachment, **post):
         if attachment:
             partner_id = request.env.user.partner_id
