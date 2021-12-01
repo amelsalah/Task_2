@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_clients_requests,access_clients_requests,model_clients_requests,,1,1,1,1
 access_services,access_services,model_services,,1,1,1,1
+access_ir_attachment,access_ir_attachment,model_ir_attachment,,1,1,1,1
