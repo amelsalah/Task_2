@@ -92,7 +92,7 @@
 
         <record model="ir.actions.act_window" id="clients_action">
             <field name="name">Clients</field>
-            <field name="res_model">res.partner</field>
+            <field name="res_model">res.users</field>
             <field name="view_mode">tree,form</field>
         </record>
 
